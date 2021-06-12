@@ -1,16 +1,22 @@
-var fs = require('fs');
+var inquirer = require("inquirer");
+
+
+
+
+/* commented at from lesson 9.3.5
+ var fs = require('fs');
 const generatePage = require('./src/page-template.js');
 
-const profileDataArgs = process.argv.slice(2); 
+const pageHTML = generatePage(name, github);
 
-// destructor time for name and github variables!!!!!
-const [name, github] = profileDataArgs;
-
-fs.writeFile('index.html', generatePage(name, github), (err)=>{
+fs.writeFile('index.html', pageHTML, (err)=>{
    if(err) throw err;
 
    console.log("Portfolio complete! Check out index.html to see the output!");
 });
+
+*/ 
+
 
 
 /* reference of input console function from lesson 9.1
