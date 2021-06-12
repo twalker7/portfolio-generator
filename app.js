@@ -1,13 +1,17 @@
-var inquirer = require("inquirer");
-inquirer
-.prompt([
-   {
-      type: 'input',
-      name: 'name',
-      message: 'What is your name?'
-   }
-   
-]).then(answer=> console.log(answer));
+const inquirer = require("inquirer");
+
+const promptUser = ()=>{
+   return inquirer.prompt([
+         {
+            type: 'input',
+            name: 'name',
+            message: 'What is your name?'
+         }
+      ]);
+};
+
+promptUser().then(answers => console.log(answers));
+
 
 
 
