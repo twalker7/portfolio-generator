@@ -15,15 +15,28 @@ const promptUser = ()=>{
                if(githubInput){
                   return true;
                }else{
-                  console.log("Must enter a value!");
+                  console.log('Must enter a value!');
                   return false;
                }
             }
          },
          {
+            type: 'confirm',
+            name: 'confirmAbout',
+            message: 'Would you like to enter some information about yourself in the About me section?',
+            default: true
+         },
+         {
             type: 'input',
             name: 'about',
-            message: 'Provide some information about yourself:'
+            message: 'Provide some information about yourself:',
+            when: ({confirmAbout})=>{
+               if(confirmAbout){
+                  return true;
+               }else{
+                  return false;
+               }
+            }
          },
       ]);
 };
