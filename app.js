@@ -1,4 +1,6 @@
 const inquirer = require("inquirer");
+var fs = require('fs');
+const generatePage = require('./src/page-template.js');
 
 const promptUser = ()=>{
    return inquirer.prompt([
@@ -122,18 +124,79 @@ const promptProject = (portfolioData)=>{
 };
 
 
+
+// IMPORTANT  ----- temprarily commenting out promptUser and replacicing code with dummy object mockData ---- revive this code and delete mockData
+
 promptUser()
 .then(promptProject)
 .then(portfolioData=>{
-   console.log(portfolioData);
-}) ;
+   
+    const pageHTML = generatePage(portfolioData); 
+     fs.writeFile('./dist/index.html', pageHTML, err => {
+       if (err){
+          console.log(err);
+          return
+       }
+
+       console.log('Page created! Check out index.html in this directory to see it!');
+    
+         fs.copyFile('./src/style.css', './dist/style.css', err=>{
+               if(err){
+                  console.log(err);
+                  return;
+               }
+
+               console.log('Style sheet copied successfully');
+         });
+      });
+});
+
+// end of necessary promptUser code   
+
+ //temporary dummy data 
+/*
+   const mockData = {
+      name: 'thomas',
+      github: 'twalker7',
+      confirmAbout: true,
+      about: 'get on then ',
+      projects: [
+      {
+         name: 'portofolio maker',
+         description: 'a way to get hired',
+         languages: [Array],
+         link: 'github.com/portfolio-maker',
+         feature: true,
+         confirmAddProject: true
+      },
+      {
+         name: 'weatherAll-pro',
+         description: 'weather forecast app',
+         languages: [Array],
+         link: 'github.com/weatherAll-pro',
+         feature: true,
+         confirmAddProject: false
+      }
+      ]
+   }
+ const pageHTML = generatePage(mockData);
+
+*/
 
 
 
 
-/* commented at from lesson 9.3.5
- var fs = require('fs');
-const generatePage = require('./src/page-template.js');
+
+
+
+
+
+
+
+
+
+/* commented out from lesson 9.3.5
+
 
 const pageHTML = generatePage(name, github);
 
